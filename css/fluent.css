@@ -1281,9 +1281,9 @@ body { background: var(--body-bg); }
 	display: none;
 	background-color: var(--body-bg) !important;
 	background-image: var(--wallpaper-image) !important;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	background-size: cover !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
 	opacity: var(--wallpaper-opacity, 1);
 }
 
@@ -1299,6 +1299,9 @@ body { background: var(--body-bg); }
 html[data-theme="light"] .wallpaper {
 	background-color: var(--body-bg) !important;
 	background-image: var(--wallpaper-image) !important;
+	background-size: cover !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
 }
 
 .dash {
