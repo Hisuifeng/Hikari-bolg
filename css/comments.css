@@ -279,6 +279,7 @@
 /* 排序：分段控件（同站内 .view-seg：选中段满色主色） */
 .post-comments .tk-comments .tk-comments-sort {
 	display: inline-flex;
+	gap: 0;
 	border: 1px solid var(--stroke);
 	background: var(--tile-tint);
 	-webkit-backdrop-filter: blur(14px) saturate(140%);
