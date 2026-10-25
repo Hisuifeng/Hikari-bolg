@@ -155,38 +155,37 @@
 		}, 400);
 	}
 
-	/* ---------- 加载圈 ----------
-	   Win10 的转圈是「一圈圆点」，原本靠 Segoe MDL2 字形实现；
-	   这里用 CSS 圆点复刻，不依赖字体，移动端同样能显示。
-	   延迟 120ms 再出现，避免本机秒开时闪一下。 */
-	var loaderEl = null;
+	/* ---------- 加载圈（demo/loading-demo.txt） ----------
+	   Win10 是一圈追逐的圆点，用 CSS 复刻，不依赖系统字体。
+	   出现时把 #content 藏起来，界面只剩标题栏 + 加载圈。 */
+	var loaderNode = null;
 	var loaderTimer = 0;
 
+	function createLoader() {
+		if (loaderNode) return;
+		loaderNode = document.createElement('div');
+		loaderNode.className = 'win10-loader';
+		loaderNode.setAttribute('aria-hidden', 'true');
+		loaderNode.innerHTML = '<span></span><span></span><span></span><span></span><span></span>';
+		document.body.appendChild(loaderNode);
+	}
+
 	function showLoader() {
-		if (loaderTimer) return;
+		createLoader();
+		if (loaderTimer) window.clearTimeout(loaderTimer);
 		loaderTimer = window.setTimeout(function () {
-			if (!loaderEl) {
-				loaderEl = document.createElement('div');
-				loaderEl.className = 'restart-loader';
-				loaderEl.setAttribute('aria-hidden', 'true');
-				var ring = document.createElement('div');
-				ring.className = 'restart-loader-ring';
-				for (var i = 0; i < 5; i++) {
-					var dot = document.createElement('span');
-					dot.style.setProperty('--i', i);
-					ring.appendChild(dot);
-				}
-				loaderEl.appendChild(ring);
-				document.body.appendChild(loaderEl);
-			}
-			loaderEl.classList.add('on');
+			loaderNode.classList.add('active');
+			var cur = document.querySelector(CONTENT);
+			if (cur) cur.classList.add('is-loading');
 		}, 120);
 	}
 
 	function hideLoader() {
-		window.clearTimeout(loaderTimer);
+		if (loaderTimer) window.clearTimeout(loaderTimer);
 		loaderTimer = 0;
-		if (loaderEl) loaderEl.classList.remove('on');
+		if (loaderNode) loaderNode.classList.remove('active');
+		var cur = document.querySelector(CONTENT);
+		if (cur) cur.classList.remove('is-loading');
 	}
 
 	function go(url, push, restoreY, dir) {
