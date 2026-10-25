@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-theme="dark"
+	style="--accent:#e06c75;--acrylic-blur:24px;">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<meta name="theme-color" content="#06101f">
+
+	
+	<script>
+		(function () {
+			try {
+				var r = document.documentElement;
+				/* 只有 Windows 自带 Segoe MDL2 Assets；其它平台回落 Font Awesome */
+				if (/Windows/i.test(navigator.userAgent)) r.classList.add('has-mdl2');
+				var t = localStorage.getItem('restart-fluent:theme');
+				/* 主题配置初始明暗：dark | light | auto（跟随系统） */
+				var cfgScheme = 'auto';
+				function sysLight() {
+					return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+				}
+				if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+				else if (t === 'auto' || (!t && cfgScheme === 'auto')) {
+					r.setAttribute('data-theme', sysLight() ? 'light' : 'dark');
+				}
+
+				/* 跟随系统时，系统明暗切换要实时生效（访客手动选过就听访客的） */
+				if (window.matchMedia) {
+					var mq = window.matchMedia('(prefers-color-scheme: light)');
+					var onSysTheme = function () {
+						var cur = localStorage.getItem('restart-fluent:theme');
+						if (cur === 'auto' || (!cur && cfgScheme === 'auto')) {
+							r.setAttribute('data-theme', mq.matches ? 'light' : 'dark');
+						}
+					};
+					if (mq.addEventListener) mq.addEventListener('change', onSysTheme);
+					else if (mq.addListener) mq.addListener(onSysTheme);
+				}
+
+				var a = localStorage.getItem('restart-fluent:accent');
+				if (/^#[0-9a-f]{6}$/i.test(a || '')) r.style.setProperty('--accent', a);
+
+				var c = localStorage.getItem('restart-fluent:compact');
+				if (c === '1' || c === '0') r.classList.toggle('is-compact', c === '1');
+
+				var e = localStorage.getItem('restart-fluent:effects');
+				if (e === '1' || e === '0') r.classList.toggle('no-effects', e === '0');
+
+				var s = localStorage.getItem('restart-fluent:sidebar');
+				if (s === '1' || s === '0') r.classList.toggle('dash-collapsed', s === '1');
+			} catch (e) { /* 隐私模式可能禁用 localStorage，忽略即可 */ }
+		})();
+	</script>
+
+	
+
+	<title>博客新视觉——fluent设计 | Hikari 的博客</title>
+	<meta name="description" content="这里是 Hikari 的个人博客：捣鼓神秘技术，吐槽难绷日常，翻历史旧瓜，唠文化知识。主打一个雨中做自己，往里豪，往里豪。">
+	<meta http-equiv="content-language" content="zh-CN">
+	
+	<meta name="keywords" content="Hikari,博客,开发,技术,生活,闲谈,Hexo,随笔,音游">
+	
+	<meta name="author" content="Hikari">
+	<link rel="canonical" href="https://blog.hikari233.qd.je/2026/10/24/%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1/">
+	<link rel="icon" href="/images/favicon.ico" sizes="any">
+	
+	<link rel="alternate" type="application/atom+xml" title="Hikari 的博客" href="https://blog.hikari233.qd.je/atom.xml">
+	
+	
+	
+
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="博客新视觉——fluent设计 | Hikari 的博客">
+	<meta property="og:description" content="这里是 Hikari 的个人博客：捣鼓神秘技术，吐槽难绷日常，翻历史旧瓜，唠文化知识。主打一个雨中做自己，往里豪，往里豪。">
+	<meta property="og:url" content="https://blog.hikari233.qd.je/2026/10/24/%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1/">
+	<meta property="og:site_name" content="Hikari 的博客">
+	<meta property="og:locale" content="zh_CN">
+	
+	<meta property="og:image" content="https://blog.hikari233.qd.je/images/head.jpg">
+	
+	
+	<meta property="article:published_time" content="2026-10-23T16:54:58.000Z">
+		
+	<meta property="article:modified_time" content="2026-10-24T06:48:08.772Z">
+		
+		
+	<meta property="article:tag" content="技术杂谈">
+		
+	<meta property="article:tag" content="hexo主题">
+		
+	<meta property="article:tag" content="前端设计">
+		
+	
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="博客新视觉——fluent设计 | Hikari 的博客">
+	<meta name="twitter:description" content="这里是 Hikari 的个人博客：捣鼓神秘技术，吐槽难绷日常，翻历史旧瓜，唠文化知识。主打一个雨中做自己，往里豪，往里豪。">
+	
+	<meta name="twitter:image" content="https://blog.hikari233.qd.je/images/head.jpg">
+	
+
+	
+	<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"博客新视觉——fluent设计","description":"这里是 Hikari 的个人博客：捣鼓神秘技术，吐槽难绷日常，翻历史旧瓜，唠文化知识。主打一个雨中做自己，往里豪，往里豪。","url":"https://blog.hikari233.qd.je/2026/10/24/%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1/","mainEntityOfPage":"https://blog.hikari233.qd.je/2026/10/24/%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1/","datePublished":"2026-10-23T16:54:58.000Z","dateModified":"2026-10-24T06:48:08.772Z","author":{"@type":"Person","name":"Hikari"},"publisher":{"@type":"Person","name":"Hikari"},"keywords":"技术杂谈,hexo主题,前端设计","image":"https://blog.hikari233.qd.je/images/head.jpg"}</script>
+
+	
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+	
+	
+<link rel="stylesheet" href="/lib/highlight/prism/prism.css">
+
+		
+	
+<link rel="stylesheet" href="/lib/highlight/prism/prism-line-numbers.css">
+
+		
+	
+	
+<link rel="stylesheet" href="/css/fluent.css">
+
+	
+<link rel="stylesheet" href="/css/feed.css">
+
+	
+<link rel="stylesheet" href="/css/content.css">
+
+	
+<link rel="stylesheet" href="/css/pages.css">
+
+	
+<link rel="stylesheet" href="/css/code.css">
+
+	
+<link rel="stylesheet" href="/css/post.css">
+
+	
+<link rel="stylesheet" href="/css/extras.css">
+
+	
+	
+<link rel="stylesheet" href="/css/comments.css">
+
+	
+	
+	
+<link rel="stylesheet" href="/css/player.css">
+
+	
+	
+	
+<link rel="stylesheet" href="/css/memos.css">
+
+	
+	
+	
+<link rel="stylesheet" href="/css/calendar.css">
+
+	
+	
+<link rel="stylesheet" href="/css/countdown.css">
+
+	
+<link rel="stylesheet" href="/css/icons.css">
+
+	
+<link rel="stylesheet" href="/css/animations.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+	<a class="skip-link" href="#content">跳到正文</a>
+
+	<div class="wallpaper is-on" aria-hidden="true"
+		style="--wallpaper-image:url('/images/wallpaper.jpg');--wallpaper-opacity:0.2;--wallpaper-dim:0.42;">
+		<span class="wallpaper-glow"></span>
+		<span class="wallpaper-noise"></span>
+	</div>
+	<div class="app" id="app">
+		
+		<header class="topnav">
+			<button class="dash-back topnav-back" id="dash-back" type="button"
+				aria-label="返回上一页" title="返回上一页"
+				data-home="/">
+				<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+					<path d="M13.5 8H3.2M7.2 3.9 3.1 8l4.1 4.1" fill="none" stroke="currentColor"
+						stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+				</svg>
+			</button>
+
+			<span class="topnav-title">博客新视觉——fluent设计</span>
+
+			<button class="topnav-menu" id="drawer-btn" type="button"
+				aria-label="打开侧栏" aria-controls="sidebar" aria-expanded="false" title="侧栏">
+				<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+					<path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor"
+						stroke-width="1.5" stroke-linecap="square"/>
+				</svg>
+			</button>
+		</header>
+
+		
+		<div class="scrim" id="scrim" hidden></div>
+
+		
+<aside class="dash" id="sidebar" aria-label="站点导航">
+	<div class="dash-body">
+		
+		<button class="dash-search-btn icon-btn reveal" id="dash-search-btn" type="button"
+			aria-label="搜索" title="搜索">
+			<i class="fa fa-search" aria-hidden="true"></i>
+		</button>
+
+		<form class="side-search" action="/search" method="get" role="search">
+			<label class="sr-only" for="side-search-input">站内搜索</label>
+			<i class="fa fa-search" aria-hidden="true"></i>
+			<input id="side-search-input" type="search" name="q" autocomplete="off" spellcheck="false"
+				placeholder="搜索标题、标签或正文…">
+		</form>
+
+		<nav class="side-nav" aria-label="主导航">
+			<p class="ctrl-label">导航</p>
+			
+				<a class="nav-item reveal" href="/"
+					title="首页" aria-label="首页">
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<span class="nav-text">首页</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/shuoshuo"
+					title="说说" aria-label="说说">
+					<i class="fa fa-comment-o" aria-hidden="true"></i>
+					<span class="nav-text">说说</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/archives"
+					title="归档" aria-label="归档">
+					<i class="fa fa-archive" aria-hidden="true"></i>
+					<span class="nav-text">归档</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/tags"
+					title="标签" aria-label="标签">
+					<i class="fa fa-tags" aria-hidden="true"></i>
+					<span class="nav-text">标签</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/categories"
+					title="分类" aria-label="分类">
+					<i class="fa fa-folder-o" aria-hidden="true"></i>
+					<span class="nav-text">分类</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/links"
+					title="友链" aria-label="友链">
+					<i class="fa fa-link" aria-hidden="true"></i>
+					<span class="nav-text">友链</span>
+				</a>
+			
+				<a class="nav-item reveal" href="/about"
+					title="关于" aria-label="关于">
+					<i class="fa fa-user-o" aria-hidden="true"></i>
+					<span class="nav-text">关于</span>
+				</a>
+			
+		</nav>
+	</div>
+
+	<section class="dash-look" aria-labelledby="side-look-title">
+		<p class="ctrl-label" id="side-look-title">外观</p>
+
+		<div class="swatches" role="group" aria-label="主题色">
+			
+				<button class="swatch" type="button"
+					style="--c:#0078d4" data-accent="#0078d4"
+					aria-label="主题色：蓝" aria-pressed="false"
+					title="蓝"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#00b7c3" data-accent="#00b7c3"
+					aria-label="主题色：青" aria-pressed="false"
+					title="青"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#107c10" data-accent="#107c10"
+					aria-label="主题色：绿" aria-pressed="false"
+					title="绿"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#8764b8" data-accent="#8764b8"
+					aria-label="主题色：紫" aria-pressed="false"
+					title="紫"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#c239b3" data-accent="#c239b3"
+					aria-label="主题色：洋红" aria-pressed="false"
+					title="洋红"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#e81123" data-accent="#e81123"
+					aria-label="主题色：红" aria-pressed="false"
+					title="红"></button>
+			
+				<button class="swatch" type="button"
+					style="--c:#ff8c00" data-accent="#ff8c00"
+					aria-label="主题色：橙" aria-pressed="false"
+					title="橙"></button>
+			
+				<button class="swatch active" type="button"
+					style="--c:#e06c75" data-accent="#e06c75"
+					aria-label="主题色：粉" aria-pressed="true"
+					title="粉"></button>
+			
+		</div>
+
+		<div class="switch-row">
+			<span>紧凑模式</span>
+			<button class="switch" type="button"
+				data-toggle="compact" role="switch" aria-checked="false"
+				aria-label="紧凑模式"></button>
+		</div>
+		<div class="switch-row">
+			<span>光效与回弹</span>
+			<button class="switch on" type="button"
+				data-toggle="effects" role="switch" aria-checked="true"
+				aria-label="光效与回弹"></button>
+		</div>
+		<div class="look-row">
+			<span class="look-label">明暗</span>
+			<div class="theme-modes" role="group" aria-label="明暗模式">
+				<button class="theme-mode" type="button" data-theme-mode="auto" aria-pressed="false">跟随系统</button>
+				<button class="theme-mode" type="button" data-theme-mode="light" aria-pressed="false">浅色</button>
+				<button class="theme-mode" type="button" data-theme-mode="dark" aria-pressed="false">深色</button>
+			</div>
+		</div>
+	</section>
+
+	<div class="dash-foot">
+		<button class="dash-toggle reveal" id="dash-toggle" type="button"
+			aria-label="折叠侧栏"
+			title="折叠侧栏"
+			aria-controls="sidebar" aria-expanded="true">
+			<svg class="dash-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+				<path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor"
+					stroke-width="1.5" stroke-linecap="square"/>
+			</svg>
+		</button>
+	</div>
+</aside>
+
+
+		<main class="feed">
+			<div id="content" class="feed-main" tabindex="-1">
+			
+
+<div class="read-progress" id="read-progress" aria-hidden="true"><i id="read-progress-bar"></i></div>
+
+<div class="post-wrap">
+	<main class="post-main">
+		<article class="reader">
+			<header class="reader-head">
+				
+					<p class="reader-kicker">
+						
+							<a href="/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/">技术杂谈</a>
+						
+					</p>
+				
+
+				<h1 class="reader-title">博客新视觉——fluent设计</h1>
+
+				<div class="reader-meta">
+					<time datetime="2026-10-24 00:54:58">
+						<i class="fa fa-calendar-o" aria-hidden="true"></i>2026-10-24
+					</time>
+					
+						<span class="dot" aria-hidden="true"></span>
+						<span><i class="fa fa-file-text-o" aria-hidden="true"></i>2.9k 字</span>
+					
+					
+						<span class="dot" aria-hidden="true"></span>
+						<span><i class="fa fa-clock-o" aria-hidden="true"></i>3 分钟</span>
+					
+					
+				</div>
+			</header>
+
+			<div class="rich article-body post-content">
+				<p>Ladies and gentlemen,now introduce the hexo theme——restart-fluent.</p>
+<p><img src="/images/pages/2026-10-24-p1.png" alt="主题图片" title="restart-fluent主题截图"></p>
+<p>欢迎来到新的博客视觉设计——Fluent Design。这个主题可能将在未来发布到github。<del>目前设计太过粗糙，移动设备适应性不好，所以暂未发布</del><br>对于Fluent Design大家肯定都很熟悉，在win10的UWP和各种系统应用中都见过这套UI设计风格。这篇文章不仅仅是为了告诉你我的博客从简洁的扁平化转到Fluent Design，还想借着这个机会讲讲Fluent Design的历史。</p>
+<h1 id="Windows-10-Fluent-Design-设计风格杂谈"><a href="#Windows-10-Fluent-Design-设计风格杂谈" class="headerlink" title="Windows 10 Fluent Design 设计风格杂谈"></a>Windows 10 Fluent Design 设计风格杂谈</h1><p>2017 年，微软在 Build 大会上正式发布了 <strong>Fluent Design System（流畅设计体系）</strong>，内部代号 “Project Neon”。它接替了 Windows 8 时代以“内容优先、极致扁平”著称的 Metro&#x2F;Modern UI，试图回答一个扁平化设计遗留下来的问题：当界面去掉了所有拟物装饰之后，如何让用户重新“感知”到可交互的层次、焦点和空间关系？</p>
+<p>Fluent 给出的答案不是回到拟物化，而是在扁平的基础上重新引入<strong>光、深度、动效、材质和缩放</strong>，让数字界面获得一种克制的“物理质感”。</p>
+<p>当时给小学的我看立了——我靠这套UI这么帅，于是将xp老爷机强升win10，最后就悲催了。</p>
+<h2 id="Fluent：Metro-的未来"><a href="#Fluent：Metro-的未来" class="headerlink" title="Fluent：Metro 的未来"></a>Fluent：Metro 的未来</h2><p>Metro 的设计逻辑是“内容优于装饰”，用纯色块、大字排版和简洁图标建立了极具辨识度的视觉语言。但这种极致扁平在交互反馈上留下了明显的空白：用户常常分不清哪些元素可以点击，页面之间的切换缺乏空间连续性，界面在情感层面也显得偏冷。</p>
+<p>Fluent Design 的定位不是对 Metro 的推倒重来，而是一次进化。它保留了 Metro 对内容和排版的尊重，同时补上了 Metro 缺失的那一层“空间感与反馈感”——数字界面不应再是冰冷的平面，而应成为一个具有物理质感、空间层次和情感响应的“场所”。</p>
+<h2 id="五大核心元素：Fluent-的设计语法"><a href="#五大核心元素：Fluent-的设计语法" class="headerlink" title="五大核心元素：Fluent 的设计语法"></a>五大核心元素：Fluent 的设计语法</h2><p>Fluent Design 体系围绕五个基础元素构建，它们共同构成了一套描述“界面应当如何被感知和操作”的语法。</p>
+<h3 id="1-Light（光感）：用光照引导注意力"><a href="#1-Light（光感）：用光照引导注意力" class="headerlink" title="1. Light（光感）：用光照引导注意力"></a>1. Light（光感）：用光照引导注意力</h3><p>光感的作用不是装饰，而是<strong>指向与邀请</strong>。当鼠标悬停在可交互元素附近时，邻近区域会以微妙的光照效果被“点亮”，暗示这里可以操作、焦点正在移动。在混合现实场景中，光感甚至承担了“视线指针”的功能，帮助用户在虚拟环境中定位交互目标。后来在 Windows 10 中广泛落地的 <strong>Reveal Highlight</strong> 效果，就是光感最直观的体现：光标经过时，按钮边框和邻近表面会浮现出一层跟随的光晕。</p>
+<h3 id="2-Depth（深度）：引入-Z-轴，让界面有“前后”"><a href="#2-Depth（深度）：引入-Z-轴，让界面有“前后”" class="headerlink" title="2. Depth（深度）：引入 Z 轴，让界面有“前后”"></a>2. Depth（深度）：引入 Z 轴，让界面有“前后”</h3><p>扁平界面本质上是一个二维平面，所有元素共享同一层“纸”。Depth 元素通过阴影、层级和视差效果，在 UI 中引入 <strong>Z 轴信息</strong>，让弹出层、导航面板、内容卡片之间产生明确的前后关系。这不仅让界面更“耐看”，更重要的是帮助用户理解<strong>什么在上、什么在下、什么是当前焦点</strong>。</p>
+<h3 id="3-Motion（动效）：让页面切换有“连续性”"><a href="#3-Motion（动效）：让页面切换有“连续性”" class="headerlink" title="3. Motion（动效）：让页面切换有“连续性”"></a>3. Motion（动效）：让页面切换有“连续性”</h3><p>动效在 Fluent 中承担的是叙事功能。当一个元素被点击后展开为新页面，或者列表项被选中后过渡到详情视图，<strong>Connected Animations</strong> 会让元素在场景转换中保持视觉上的连续性，而不是生硬地“跳切”。用户由此获得一种空间上的安心感：我知道自己从哪里来，也知道当前界面与上一界面的关系。</p>
+<h3 id="4-Material（材质）：亚克力与“可触摸的界面”"><a href="#4-Material（材质）：亚克力与“可触摸的界面”" class="headerlink" title="4. Material（材质）：亚克力与“可触摸的界面”"></a>4. Material（材质）：亚克力与“可触摸的界面”</h3><p>材质是 Fluent 最具辨识度的部分。<strong>Acrylic（亚克力）</strong> 是一种半透明模糊材质，它让应用背景能够“透”出桌面或其他窗口的色彩与光影，同时叠加噪点来保证文字可读性。亚克力的意义不止于“毛玻璃好看”——它在功能上帮助应用建立<strong>上下文衔接</strong>：你始终知道自己身处系统之中，而非一个孤立的色块里。</p>
+<h3 id="5-Scale（缩放）：一套设计，适配所有屏幕"><a href="#5-Scale（缩放）：一套设计，适配所有屏幕" class="headerlink" title="5. Scale（缩放）：一套设计，适配所有屏幕"></a>5. Scale（缩放）：一套设计，适配所有屏幕</h3><p>Scale 关注的是应用如何在 PC、平板、手机、Xbox 乃至混合现实设备之间<strong>弹性地重塑自身</strong>。它不是一条硬性规则，而是一种跨设备的设计意识：布局、控件密度、交互方式都应当随屏幕尺寸和输入方式（键鼠、触控、语音、手势）而变化，而不是把 PC 界面原样塞进小屏幕。</p>
+<h2 id="Fluent-在-Windows-10-中的渐进渗透"><a href="#Fluent-在-Windows-10-中的渐进渗透" class="headerlink" title="Fluent 在 Windows 10 中的渐进渗透"></a>Fluent 在 Windows 10 中的渐进渗透</h2><p>Fluent Design 并非随着某一次系统更新“完整降临”。微软从一开始就把它定义为一项<strong>长期演进</strong>，以“波次（waves）”的形式逐步交付。</p>
+<p><strong>第一波</strong>主要聚焦于五个可供开发者直接调用的效果：<strong>Reveal Highlight、Acrylic Material、Connected Animations、Conscious Controls（随滚动调整的标题栏）以及 Perspective Parallax（透视视差）</strong>。</p>
+<p>这些效果最先出现在 Windows 10 的内置应用中——计算器、Groove 音乐、录音机等较早获得了光感、半透明材质和新的动效。随后，Fluent 的渗透范围扩展到 <strong>Windows 本身</strong>：在秋季创意者更新（2017 年 10 月）中，开始菜单和操作中心率先获得亚克力效果；后续预览版本进一步将亚克力带到<strong>任务栏、分享界面、时钟与日历浮出层、网络&#x2F;音量&#x2F;输入浮出层</strong>等系统级表面。到 2018 年的春季创意者更新，开始菜单中的应用列表和动态磁贴也获得了 Reveal 特效。</p>
+<p>这种渐进策略意味着，在 Windows 10 的生命周期内，Fluent Design 的呈现是<strong>不均匀的</strong>：一部分系统界面和应用走在前列，另一部分（尤其是传统 Win32 组件 <span class="heimu" title="你知道的太多了">这叫兼容</span> ）的更新节奏更慢。<del>屎山构建中</del></p>
+<h2 id="Fluent设计哲学"><a href="#Fluent设计哲学" class="headerlink" title="Fluent设计哲学"></a>Fluent设计哲学</h2><p>如果只把 Fluent Design 理解为“毛玻璃 + 悬停光效”，就错过了它最核心的主张。</p>
+<p><strong>第一，反馈先于装饰。</strong> 光感和动效的首要任务不是让界面“好看”，而是让用户<strong>在任何时刻都知道系统在回应自己</strong>。Reveal 的光晕不是壁纸，而是可交互性的信号；Connected Animations 是空间连续性的保证。</p>
+<p><strong>第二，材质承担功能，而非仅仅承担风格。</strong> 亚克力的半透明让应用与桌面之间保持视觉联系，帮助用户维持“我在哪里”的上下文感知。当材质只是为了好看而存在时，Fluent 就退化成了一种皮肤；当材质被用来建立层次和归属感时，它才是设计体系的一部分。</p>
+<p><strong>第三，跨设备是设计的前提，不是事后适配。</strong> Scale 元素从底层要求设计决策必须在多种屏幕尺寸和输入方式下成立。Fluent 诞生于 UWP“一次编写、多处运行”的愿景之中，它的视觉语言从一开始就带有<strong>弹性</strong>的基因。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Fluent Design 在 Windows 10 上的故事，是一个设计体系在失败后重振的故事，它试图在扁平化中找回界面应有的层次与反馈。它的五大元素——光、深度、动效、材质、缩放——提供的不只是一套视觉效果清单，更是一种思考方式：好的界面设计，应当让用户在操作之前就“感觉”到它可以被操作，在移动之后仍然“知道”自己身在何处。</p>
+<p>如果你今天打开 Windows 10 的设置或开始菜单，看到亚克力背景上的模糊色彩、光标滑过时浮现的光晕，那就是 Fluent Design 留下的、安静而持续的回响。</p>
+
+			</div>
+
+			<footer class="reader-foot">
+				
+					<div class="reader-tags">
+						<span class="reader-tags-label">标签</span>
+						
+							<a class="tag" href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/">技术杂谈</a>
+						
+							<a class="tag" href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+						
+							<a class="tag" href="/tags/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1/">前端设计</a>
+						
+					</div>
+				
+
+				
+					<section class="share-box" aria-labelledby="share-title">
+						<p class="share-title" id="share-title">分享这篇文章</p>
+
+						<div class="share-poster">
+							<div class="share-poster-main">
+								<p class="share-poster-brand">Hikari 的博客</p>
+								<h3 class="share-poster-title">博客新视觉——fluent设计</h3>
+								
+									<p class="share-poster-desc">Ladies and gentlemen,now introduce the hexo theme——restart-fluent. 欢迎来到新的博客视觉设计——Fluent Design。这</p>
+								
+								<p class="share-poster-meta">Hikari · 2026-10-24</p>
+							</div>
+							<div class="share-poster-qr">
+								<div class="share-qr" id="share-qr"></div>
+								<span class="share-qr-tip">扫码阅读</span>
+							</div>
+						</div>
+
+						<div class="share-btns">
+							<a class="share-btn" target="_blank" rel="noopener noreferrer"
+								href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fblog.hikari233.qd.je%2F2026%2F10%2F24%2F%25E5%258D%259A%25E5%25AE%25A2%25E6%2596%25B0%25E8%25A7%2586%25E8%25A7%2589%25E2%2580%2594%25E2%2580%2594fluent%25E8%25AE%25BE%25E8%25AE%25A1%2F&amp;title=%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1">
+								<i class="fa fa-weibo" aria-hidden="true"></i>微博
+							</a>
+							<a class="share-btn" target="_blank" rel="noopener noreferrer"
+								href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fblog.hikari233.qd.je%2F2026%2F10%2F24%2F%25E5%258D%259A%25E5%25AE%25A2%25E6%2596%25B0%25E8%25A7%2586%25E8%25A7%2589%25E2%2580%2594%25E2%2580%2594fluent%25E8%25AE%25BE%25E8%25AE%25A1%2F&amp;title=%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1">
+								<i class="fa fa-qq" aria-hidden="true"></i>QQ
+							</a>
+							<a class="share-btn" target="_blank" rel="noopener noreferrer"
+								href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.hikari233.qd.je%2F2026%2F10%2F24%2F%25E5%258D%259A%25E5%25AE%25A2%25E6%2596%25B0%25E8%25A7%2586%25E8%25A7%2589%25E2%2580%2594%25E2%2580%2594fluent%25E8%25AE%25BE%25E8%25AE%25A1%2F&amp;text=%E5%8D%9A%E5%AE%A2%E6%96%B0%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94fluent%E8%AE%BE%E8%AE%A1">
+								<i class="fa fa-twitter" aria-hidden="true"></i>X
+							</a>
+							<button class="share-btn" type="button" data-share="copy">
+								<i class="fa fa-link" aria-hidden="true"></i>复制链接
+							</button>
+						</div>
+					</section>
+				
+
+				<nav class="post-nav" aria-label="上下篇">
+					
+						<span class="post-nav-item is-empty"></span>
+					
+					
+						<a class="post-nav-item is-next" href="/2026/10/13/%E5%BD%93%E6%9C%80%E5%90%8E%E4%B8%80%E6%89%B900%E5%90%8E%E7%AB%99%E5%9C%A8%E6%88%90%E5%B9%B4%E7%9A%84%E9%97%A8%E6%A7%9B%E4%B8%8A/" rel="next">
+							<span class="nav-dir">下一篇</span>
+							<span class="nav-title">当最后一批00后站在成年的门槛上</span>
+						</a>
+					
+				</nav>
+			</footer>
+		</article>
+
+		
+			
+
+<section class="post-comments">
+	
+	<div class="twikoo" id="tcomment"
+		data-src="https://registry.npmmirror.com/twikoo/2.0.12/files/dist/twikoo.min.js"
+		data-env-id="https://hikari-twikoo.netlify.app/.netlify/functions/twikoo"
+		data-lang="zh-CN"
+		data-path=""></div>
+</section>
+
+		
+	</main>
+
+	
+		<aside class="post-side">
+			<nav class="toc-box" aria-label="文章目录">
+				<p class="box-title">目录</p>
+				<div class="toc-content" id="toc-content">
+					<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-10-Fluent-Design-%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC%E6%9D%82%E8%B0%88"><span class="toc-text">Windows 10 Fluent Design 设计风格杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent%EF%BC%9AMetro-%E7%9A%84%E6%9C%AA%E6%9D%A5"><span class="toc-text">Fluent：Metro 的未来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%85%83%E7%B4%A0%EF%BC%9AFluent-%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%AF%AD%E6%B3%95"><span class="toc-text">五大核心元素：Fluent 的设计语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Light%EF%BC%88%E5%85%89%E6%84%9F%EF%BC%89%EF%BC%9A%E7%94%A8%E5%85%89%E7%85%A7%E5%BC%95%E5%AF%BC%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">1. Light（光感）：用光照引导注意力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Depth%EF%BC%88%E6%B7%B1%E5%BA%A6%EF%BC%89%EF%BC%9A%E5%BC%95%E5%85%A5-Z-%E8%BD%B4%EF%BC%8C%E8%AE%A9%E7%95%8C%E9%9D%A2%E6%9C%89%E2%80%9C%E5%89%8D%E5%90%8E%E2%80%9D"><span class="toc-text">2. Depth（深度）：引入 Z 轴，让界面有“前后”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Motion%EF%BC%88%E5%8A%A8%E6%95%88%EF%BC%89%EF%BC%9A%E8%AE%A9%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E6%9C%89%E2%80%9C%E8%BF%9E%E7%BB%AD%E6%80%A7%E2%80%9D"><span class="toc-text">3. Motion（动效）：让页面切换有“连续性”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Material%EF%BC%88%E6%9D%90%E8%B4%A8%EF%BC%89%EF%BC%9A%E4%BA%9A%E5%85%8B%E5%8A%9B%E4%B8%8E%E2%80%9C%E5%8F%AF%E8%A7%A6%E6%91%B8%E7%9A%84%E7%95%8C%E9%9D%A2%E2%80%9D"><span class="toc-text">4. Material（材质）：亚克力与“可触摸的界面”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Scale%EF%BC%88%E7%BC%A9%E6%94%BE%EF%BC%89%EF%BC%9A%E4%B8%80%E5%A5%97%E8%AE%BE%E8%AE%A1%EF%BC%8C%E9%80%82%E9%85%8D%E6%89%80%E6%9C%89%E5%B1%8F%E5%B9%95"><span class="toc-text">5. Scale（缩放）：一套设计，适配所有屏幕</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent-%E5%9C%A8-Windows-10-%E4%B8%AD%E7%9A%84%E6%B8%90%E8%BF%9B%E6%B8%97%E9%80%8F"><span class="toc-text">Fluent 在 Windows 10 中的渐进渗透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6"><span class="toc-text">Fluent设计哲学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></li></ol>
+				</div>
+			</nav>
+		</aside>
+	
+</div>
+
+
+	<button class="toc-toggle" id="toc-toggle" type="button" aria-label="打开目录" aria-expanded="false">
+		<i class="fa fa-list-ul" aria-hidden="true"></i>
+	</button>
+
+	<div class="toc-drawer" id="toc-drawer" role="dialog" aria-modal="true" aria-label="文章目录">
+		<div class="toc-drawer-mask" id="toc-drawer-mask"></div>
+		<div class="toc-drawer-panel">
+			<div class="toc-drawer-head">
+				<span>目录</span>
+				<button id="toc-drawer-close" type="button" aria-label="关闭目录">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="toc-content">
+				<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-10-Fluent-Design-%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC%E6%9D%82%E8%B0%88"><span class="toc-text">Windows 10 Fluent Design 设计风格杂谈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent%EF%BC%9AMetro-%E7%9A%84%E6%9C%AA%E6%9D%A5"><span class="toc-text">Fluent：Metro 的未来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%85%83%E7%B4%A0%EF%BC%9AFluent-%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%AF%AD%E6%B3%95"><span class="toc-text">五大核心元素：Fluent 的设计语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Light%EF%BC%88%E5%85%89%E6%84%9F%EF%BC%89%EF%BC%9A%E7%94%A8%E5%85%89%E7%85%A7%E5%BC%95%E5%AF%BC%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">1. Light（光感）：用光照引导注意力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Depth%EF%BC%88%E6%B7%B1%E5%BA%A6%EF%BC%89%EF%BC%9A%E5%BC%95%E5%85%A5-Z-%E8%BD%B4%EF%BC%8C%E8%AE%A9%E7%95%8C%E9%9D%A2%E6%9C%89%E2%80%9C%E5%89%8D%E5%90%8E%E2%80%9D"><span class="toc-text">2. Depth（深度）：引入 Z 轴，让界面有“前后”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Motion%EF%BC%88%E5%8A%A8%E6%95%88%EF%BC%89%EF%BC%9A%E8%AE%A9%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E6%9C%89%E2%80%9C%E8%BF%9E%E7%BB%AD%E6%80%A7%E2%80%9D"><span class="toc-text">3. Motion（动效）：让页面切换有“连续性”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Material%EF%BC%88%E6%9D%90%E8%B4%A8%EF%BC%89%EF%BC%9A%E4%BA%9A%E5%85%8B%E5%8A%9B%E4%B8%8E%E2%80%9C%E5%8F%AF%E8%A7%A6%E6%91%B8%E7%9A%84%E7%95%8C%E9%9D%A2%E2%80%9D"><span class="toc-text">4. Material（材质）：亚克力与“可触摸的界面”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Scale%EF%BC%88%E7%BC%A9%E6%94%BE%EF%BC%89%EF%BC%9A%E4%B8%80%E5%A5%97%E8%AE%BE%E8%AE%A1%EF%BC%8C%E9%80%82%E9%85%8D%E6%89%80%E6%9C%89%E5%B1%8F%E5%B9%95"><span class="toc-text">5. Scale（缩放）：一套设计，适配所有屏幕</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent-%E5%9C%A8-Windows-10-%E4%B8%AD%E7%9A%84%E6%B8%90%E8%BF%9B%E6%B8%97%E9%80%8F"><span class="toc-text">Fluent 在 Windows 10 中的渐进渗透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fluent%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6"><span class="toc-text">Fluent设计哲学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></li></ol>
+			</div>
+		</div>
+	</div>
+
+
+
+<script src="/js/post.js"></script>
+
+
+<script src="/js/comments.js"></script>
+
+
+			</div>
+
+			
+<footer class="feed-foot">
+	<div class="feed-foot-inner">
+		<p class="foot-copy">
+			&copy; 2025&ndash;2026
+			<span>Hikari</span>
+		</p>
+		
+			<p class="foot-saying">&ldquo;不要让生活冲垮了你。&rdquo;</p>
+		
+		<p class="foot-meta">
+			
+				<a href="/atom.xml" target="_blank" rel="noopener">RSS 订阅</a>
+				<span class="foot-dot">·</span>
+			
+			
+			
+				由 <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a> 驱动
+				<span class="foot-dot">·</span> 主题 <span>restart-fluent</span>
+			
+		</p>
+	</div>
+</footer>
+
+		</main>
+	</div>
+
+	
+	
+
+
+
+	<div class="player reveal" id="player"
+		data-mode="list"
+		data-vol="up"
+		data-volume="0.1"
+		data-autoplay="0"
+		
+		data-blob="1">
+
+		
+		<div class="player-head">
+			<button class="player-main" id="player-play" type="button" aria-label="播放" title="播放 / 暂停">
+				<span class="player-ico on-pause"><svg class="player-svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 5h3.6v14H7z"/><path d="M13.4 5H17v14h-3.4z"/></svg></span>
+				<span class="player-ico on-idle"><svg class="player-svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></span>
+			</button>
+
+			<p class="player-title">
+				<span class="player-name" id="player-name">—</span>
+				<em class="player-artist" id="player-artist"></em>
+			</p>
+
+			
+			<button class="player-fold" id="player-fold" type="button"
+				aria-label="展开播放器" aria-expanded="false" title="展开播放器">
+				<span class="player-ico on-static player-chevron"><svg class="player-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></span>
+			</button>
+		</div>
+
+		
+		<div class="player-panel" id="player-panel">
+			<div class="player-progress">
+				<span class="player-time" id="player-cur">0:00</span>
+				<div class="player-bar" id="player-bar" role="slider" tabindex="0"
+					aria-label="播放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+					<i class="player-fill" id="player-fill"></i>
+				</div>
+				<span class="player-time" id="player-dur">0:00</span>
+			</div>
+
+			
+			<p class="player-buffer" id="player-buffer" hidden>缓冲中…</p>
+
+			<div class="player-row">
+				<button class="player-ctrl" id="player-prev" type="button" aria-label="上一首" title="上一首">
+					<span class="player-ico on-static"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 6h1.6v12H7z"/><path d="M18 6v12l-8-6 8-6z"/></svg></span>
+				</button>
+				<button class="player-ctrl" id="player-next" type="button" aria-label="下一首" title="下一首">
+					<span class="player-ico on-static"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l8 6-8 6V6z"/><path d="M15.4 6H17v12h-1.6z"/></svg></span>
+				</button>
+
+				<span class="player-sep" aria-hidden="true"></span>
+
+				
+				<button class="player-ctrl" id="player-mode" type="button" aria-label="播放模式" title="播放模式">
+					<span class="player-ico on-mode-list"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
+					<span class="player-ico on-mode-single"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/><path d="M11 10h1.2v4"/></svg></span>
+					<span class="player-ico on-mode-shuffle"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 3h5v5"/><path d="M21 3 3 21"/><path d="M16 21h5v-5"/><path d="M3 3l6 6"/><path d="M15 15l6 6"/></svg></span>
+				</button>
+				<button class="player-ctrl" id="player-list-btn" type="button" aria-label="播放列表" aria-expanded="false" title="播放列表">
+					<span class="player-ico on-static"><svg class="player-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h9"/></svg></span>
+				</button>
+
+				<div class="player-volume">
+					<button class="player-mute" id="player-mute" type="button" aria-label="静音" title="静音 / 取消静音">
+						<span class="player-ico on-vol-up"><svg class="player-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5.5a9 9 0 0 1 0 13"/></svg></span>
+						<span class="player-ico on-vol-down"><svg class="player-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></span>
+						<span class="player-ico on-vol-mute"><svg class="player-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg></span>
+					</button>
+					<div class="player-bar player-vol-bar" id="player-vol-bar" role="slider" tabindex="0"
+						aria-label="音量" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+						<i class="player-fill" id="player-vol-fill"></i>
+					</div>
+				</div>
+			</div>
+
+			
+			<ul class="player-list" id="player-list"></ul>
+		</div>
+
+		<audio id="player-audio" preload="auto"></audio>
+
+		<script type="application/json" id="player-data">{"songs":[{"name":"Familiar Arms","artist":"横山克","url":"/music/%E6%A8%AA%E5%B1%B1%E5%85%8B%20-%20Familiar%20Arms.mp3"}],"holidayRanges":[{"name":"元旦","start":"2025-01-01","end":"2025-01-01"},{"name":"春节","start":"2025-01-28","end":"2025-02-04"},{"name":"清明节","start":"2025-04-04","end":"2025-04-06"},{"name":"劳动节","start":"2025-05-01","end":"2025-05-05"},{"name":"端午节","start":"2025-05-31","end":"2025-06-02"},{"name":"国庆节","start":"2025-10-01","end":"2025-10-08"},{"name":"元旦","start":"2026-01-01","end":"2026-01-03"},{"name":"春节","start":"2026-02-15","end":"2026-02-23"},{"name":"清明节","start":"2026-04-04","end":"2026-04-06"},{"name":"劳动节","start":"2026-05-01","end":"2026-05-05"},{"name":"端午节","start":"2026-06-19","end":"2026-06-21"},{"name":"中秋节","start":"2026-09-25","end":"2026-09-27"},{"name":"国庆节","start":"2026-10-01","end":"2026-10-07"}],"holidaySongs":{"春节":{"name":"春节序曲","artist":"中国国家交响乐团","url":"/music/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E8%A7%A3%E6%94%BE%E5%86%9B%E5%86%9B%E4%B9%90%E5%9B%A2%20-%20%E6%98%A5%E8%8A%82%E5%BA%8F%E6%9B%B2.mp3"},"国庆节":{"name":"分列式进行曲","artist":"中国人民解放军军乐团","url":"/music/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%B0%91%E8%A7%A3%E6%94%BE%E5%86%9B%E5%86%9B%E4%B9%90%E5%9B%A2%20-%20%E5%88%86%E5%88%97%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%9B%B2.mp3"}}}</script>
+	</div>
+
+
+
+	<button class="to-top" id="to-top" type="button" aria-label="回到顶部" title="回到顶部">
+		<i class="fa fa-arrow-up" aria-hidden="true"></i>
+	</button>
+
+	
+<script src="/js/fluent.js"></script>
+
+	
+	
+	
+<script src="/js/extras.js"></script>
+
+
+	
+	
+<script src="/js/player.js"></script>
+
+	
+	
+<script src="/js/music-card.js"></script>
+
+	
+	
+<script src="/js/pjax.js"></script>
+
+	
+	
+	
+<script src="/js/memos.js"></script>
+
+	
+	
+<script src="/js/countdown.js"></script>
+
+</body>
+
+</html>
