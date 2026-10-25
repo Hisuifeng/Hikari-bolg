@@ -164,6 +164,20 @@
 
   
   <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E7%8C%8E%E5%A5%87/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E6%9A%B4%E5%8A%9B/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.hikari233.qd.je/tags/%E9%97%B2%E8%81%8A%E5%90%B9%E6%B0%B4/</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -199,6 +213,13 @@
   </url>
   
   <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E5%87%9B%E5%85%89%E4%BF%A1%E7%AE%B1/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.hikari233.qd.je/tags/hexo%E4%B8%BB%E9%A2%98/</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -207,27 +228,6 @@
   
   <url>
     <loc>https://blog.hikari233.qd.je/tags/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E7%8C%8E%E5%A5%87/</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E6%9A%B4%E5%8A%9B/</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E5%87%9B%E5%85%89%E4%BF%A1%E7%AE%B1/</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

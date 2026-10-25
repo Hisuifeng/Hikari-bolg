@@ -1488,5 +1488,10 @@ html[data-theme="light"] {
 	100% { transform: rotate(720deg); opacity: 0; }
 }
 
-/* 加载时内容区留空：界面上只剩标题栏和加载圈 */
-#content.is-loading { visibility: hidden; }
+/* 加载时内容区留空：界面上只剩标题栏和加载圈。
+   用 opacity 而不是 visibility —— hero 幻灯片里的 .hero-slide 会把
+   visibility 显式设回 visible，继承的 hidden 会被它顶掉。 */
+#content.is-loading {
+	opacity: 0;
+	pointer-events: none;
+}
