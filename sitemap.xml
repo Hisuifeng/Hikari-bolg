@@ -192,7 +192,14 @@
   </url>
   
   <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E5%87%9B%E5%85%89%E4%BF%A1%E7%AE%B1/</loc>
+    <loc>https://blog.hikari233.qd.je/tags/hexo%E4%B8%BB%E9%A2%98/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -220,35 +227,7 @@
   </url>
   
   <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E6%A0%A1%E9%AA%8C%E7%A0%81/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E5%A5%87%E5%81%B6%E9%AA%8C%E8%AF%81/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E6%B5%B7%E6%98%8E%E7%A0%81/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/CRC/</loc>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E3%80%8A%E5%BA%95%E5%B1%82%E7%9A%84%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8B/</loc>
+    <loc>https://blog.hikari233.qd.je/tags/%E5%87%9B%E5%85%89%E4%BF%A1%E7%AE%B1/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -283,14 +262,35 @@
   </url>
   
   <url>
-    <loc>https://blog.hikari233.qd.je/tags/hexo%E4%B8%BB%E9%A2%98/</loc>
+    <loc>https://blog.hikari233.qd.je/tags/%E3%80%8A%E5%BA%95%E5%B1%82%E7%9A%84%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8B/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.hikari233.qd.je/tags/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>https://blog.hikari233.qd.je/tags/%E6%A0%A1%E9%AA%8C%E7%A0%81/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E5%A5%87%E5%81%B6%E9%AA%8C%E8%AF%81/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hikari233.qd.je/tags/%E6%B5%B7%E6%98%8E%E7%A0%81/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hikari233.qd.je/tags/CRC/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
