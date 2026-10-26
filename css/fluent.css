@@ -847,9 +847,8 @@ html[data-theme="light"] .theme-ico-light { display: inline-block; }
 
 .feed-foot-inner {
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 6px 18px;
+	flex-direction: column;
+	gap: 6px;
 	max-width: var(--feed-max);
 	margin: 0 auto;
 	padding: 18px 24px;
@@ -857,23 +856,37 @@ html[data-theme="light"] .theme-ico-light { display: inline-block; }
 	color: var(--text-mute);
 }
 
+.foot-line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px 18px;
+}
+
 .foot-copy { margin: 0; }
 .foot-copy span { color: var(--text-dim); }
 
 .foot-saying {
-	flex: 1;
-	min-width: 220px;
+	flex: none;
+	min-width: 0;
 	margin: 0;
 	text-align: center;
 	color: var(--text-mute);
 }
 
-.foot-meta { margin: 0 0 0 auto; }
+.foot-meta { margin: 0; }
 
 .foot-meta a,
 .foot-meta span { color: var(--text-dim); }
 
 .foot-dot { margin: 0 6px; color: var(--text-mute); }
+
+/* ---------- 链接可拖拽 ----------
+   左键按住链接可直接拖到标签栏 / 书签栏，不被祖先的可选中设置拦掉。 */
+a[href] {
+	-webkit-user-drag: element;
+}
 
 /* ---------- 通用控件 ---------- */
 .chips {
@@ -1204,12 +1217,13 @@ html.no-effects .pressable.pressing {
 	.feed-main { padding: 8px 12px 34px; }
 
 	.feed-foot-inner {
-		display: block;
+		display: flex;
 		padding: 16px 12px;
 		text-align: center;
 	}
 
-	.foot-saying { margin-top: 4px; }
+	.foot-line { display: block; }
+	.foot-saying { margin: 0; }
 	.foot-meta { margin: 4px 0 0; }
 }
 
