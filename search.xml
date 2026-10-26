@@ -20,11 +20,11 @@
       
         <tags>
             
+            <tag> 技术杂谈 </tag>
+            
             <tag> hexo主题 </tag>
             
             <tag> 前端设计 </tag>
-            
-            <tag> 技术杂谈 </tag>
             
         </tags>
       
@@ -95,8 +95,6 @@
       
         <tags>
             
-            <tag> 《底层的世界——计算机组成原理》 </tag>
-            
             <tag> 校验码 </tag>
             
             <tag> 奇偶验证 </tag>
@@ -104,6 +102,8 @@
             <tag> 海明码 </tag>
             
             <tag> CRC </tag>
+            
+            <tag> 《底层的世界——计算机组成原理》 </tag>
             
         </tags>
       
@@ -128,6 +128,8 @@
       
         <tags>
             
+            <tag> 《底层的世界——计算机组成原理》 </tag>
+            
             <tag> 计算机组成原理 </tag>
             
             <tag> 浮点数 </tag>
@@ -135,8 +137,6 @@
             <tag> 定点数 </tag>
             
             <tag> 数的世界 </tag>
-            
-            <tag> 《底层的世界——计算机组成原理》 </tag>
             
         </tags>
       
