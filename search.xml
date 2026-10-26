@@ -20,11 +20,11 @@
       
         <tags>
             
+            <tag> 技术杂谈 </tag>
+            
             <tag> hexo主题 </tag>
             
             <tag> 前端设计 </tag>
-            
-            <tag> 技术杂谈 </tag>
             
         </tags>
       
@@ -49,11 +49,17 @@
       
         <tags>
             
-            <tag> 技术杂谈 </tag>
+            <tag> PHP </tag>
+            
+            <tag> CA证书 </tag>
+            
+            <tag> Node.js </tag>
             
             <tag> 互联网 </tag>
             
             <tag> 网络安全 </tag>
+            
+            <tag> 技术杂谈 </tag>
             
         </tags>
       
